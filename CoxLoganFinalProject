@@ -1,0 +1,97 @@
+user_age = 0
+user_weight = 0
+user_height = 0
+user_name = ''
+user_bmi = 0
+user_bf = 0
+user_bmr = 0
+user_height_cm = 0
+user_weight_kg = 0
+user_calories = 0
+
+print("Welcome to your personal health tracker.")
+user_name = input("Please enter your first name:  ")
+
+while user_age == 0:
+    user_age = int(input("Please enter your age: "))
+    if user_age < 18:
+        print("You must be at least 18 years old to use this program.")
+        exit()
+
+while user_height == 0:
+    user_height = int(input("Please enter your height in inches: "))
+    if user_height > 96:
+        print("Sorry, this program won't be able to help you.")
+        exit()
+    if user_height < 48:
+        print("Sorry, this program won't be able to help you.")
+        exit()
+
+user_weight = int(input("Enter your weight in pounds: "))
+
+user_gender = input("Please enter you sex at birth (Female or Male): ")
+
+user_bmi = (user_weight / (user_height**2)) * 703
+
+if user_gender.lower() == "male":
+    user_bf = (1.20 * user_bmi) + (0.23 * user_age) - 16.2
+else:
+    user_bf = (1.20 * user_bmi) + (0.23 * user_age) - 5.4
+
+print('Your BMI is ', (user_bmi), "and your body fat percentage is roughly ", (user_bf),"%" )
+
+
+
+user_weight_kg = user_weight * 0.45359237
+user_height_cm = user_height * 2.54
+
+if user_gender.lower() == "male":
+    user_bmr = 66 + (13.7 * user_weight_kg) + (5 * user_height_cm) - (6.8 * user_age)
+else:
+    user_bmr = 655 + (9.6 * user_weight_kg) + (1.8 * user_height_cm) - (4.7 * user_age)
+
+print("Your basic metabolic rate is ", (user_bmr))
+
+user_activity = input("What is your activity level? (Sedentary, Lightly active, Moderately active, Very Active, or Extra active) (type HELP to define active levels) : ")
+while user_activity.upper() == "HELP":
+    print("Sedentary is little or no exercise, desk job")
+    print("Lightly active is light exercise or sports 1-3 days a week")
+    print("Moderate active is moderate exercise or sports 6-7 days a week")
+    print("Very active is hard exercise every day or exercising 2 times a day")
+    print("Extra active is hard exercise 2 or more times per day, or training for a marathon/triathlon")
+    user_activity = input("What is your activity level? (Sedentary, Lightly active, Moderately active, Very Active, or Extra active) (type HELP to define active levels) : ")
+if user_activity.lower() == "sedentary":
+    user_calories = user_bmr * 1.2
+
+if user_activity.lower() == "lightly active":
+    user_calories = user_bmr * 1.375
+
+if user_activity.lower() == "moderately active":
+    user_calories = user_bmr * 1.55
+
+if user_activity.lower() == "very active":
+    user_calories = user_bmr * 1.725
+
+if user_activity.lower() == "extra active":
+    user_calories = user_bmr * 1.9
+
+
+print("Your calories based on your activity level are ", (user_calories))
+
+print('Are your goals to build muscle, lose weight, or improve overall fitness?')
+user_goals = input("Enter Goal: ")
+
+while user_goals.lower() == "build muscle":
+    print("You should eat in a caloric surplus of 500 calories above your maintenance This is around ", (user_calories + 500))
+    print("Remember, consistency is key. ")
+    break
+
+while user_goals.lower() == "lose weight":
+    print("You should eat in a caloric deficit of 200-300 calories below your maintenance. This is around ", (user_calories - 300))
+    print("Remember, consistency is key. ")
+    break
+
+while user_goals.lower() == "improve overall fitness":
+    print("You should start slow if you're new to working out. You should resistance train up to 3 times a week. If you feel like it, add in some easy run days.")
+    print("Remember, consistency is key. ")
+    break
